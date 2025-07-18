@@ -37,7 +37,7 @@ variable "pihole3_api_token" {
 variable "uptimekuma" {
   description = "App name"
   type        = string
-  default     = "uptimekuma2"
+  default     = "uptimekuma"
 }
 
 variable "pihole" {
