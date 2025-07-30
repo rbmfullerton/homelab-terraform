@@ -74,8 +74,7 @@ resource "kubernetes_manifest" "deployment" {
                   name      = "${var.app_name}-data"
                 }
               ]
-# uncomment if needed
-#              env = var.envs
+              env = var.envs
             }
           ]
           nodeSelector = {

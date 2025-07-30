@@ -3,3 +3,9 @@
     name = "uptimekuma"
   }
 }
+
+resource "kubernetes_namespace" "servarr-internal" {
+  metadata {
+    name = "servarr-internal"
+  }
+}

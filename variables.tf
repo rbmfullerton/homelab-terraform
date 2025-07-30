@@ -51,3 +51,19 @@ variable "pihole2" {
   type        = string
   default     = "pihole2"
 }
+
+variable "homarr" {
+  description = "App name"
+  type        = string
+  default     = "homarr"
+}
+
+variable "homarr_envs" {
+  description = "Environment variables for Homarr container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}

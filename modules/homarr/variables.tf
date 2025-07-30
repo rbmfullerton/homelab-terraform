@@ -6,13 +6,13 @@
 variable "namespace" {
   description = "Kubernetes namespace for app"
   type        = string
-  default     = "uptimekuma"
+  default     = "servarr-internal"
 }
 
 variable "storage_size" {
   description = "Storage required for persistent volume"
   type        = string
-  default     = "5Gi"
+  default     = "1Gi"
 }
 
 variable "storage_class" {
@@ -24,25 +24,25 @@ variable "storage_class" {
 variable "image" {
   description = "Image for container"
   type        = string
-  default     = "louislam/uptime-kuma"
+  default     = "ghcr.io/homarr-labs/homarr"
 }
 
 variable "image_version" {
   description = "Version of container image"
   type        = string
-  default     = "1.23.16"
+  default     = "v1.30.1"
 }
 
 variable "mount_path" {
   description = "Mount Path for container's data"
   type        = string
-  default     = "/app/data"
+  default     = "/appdata"
 }
 
 variable "port" {
   description = "Port for WebUi"
   type        = string
-  default     = "3001"
+  default     = "7575"
 }
 
 variable "protocol" {
@@ -51,13 +51,14 @@ variable "protocol" {
   default     = "TCP"
 }
 
-# envs if required. uncomment if needed. also uncomment from main.tf
-#variable "envs" {
-#  description = "List of environment variables for the container"
-#  sensitive   = true
-#  type        = list(object({
-#    name  = string
-#    value = string
-#  }))
-#  default     = []
-#}
+
+# envs if required
+variable "envs" {
+  description = "List of environment variables for the container"
+  sensitive   = true
+  type        = list(object({
+    name  = string
+    value = string
+  }))
+  default     = []
+}
