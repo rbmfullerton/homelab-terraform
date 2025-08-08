@@ -8,8 +8,8 @@
   # optionally, pass variables expected by your module here
 }
 
-module "uptime_kuma_2" {
-  source = "./modules/UptimeKuma2"
+module "uptimekuma" {
+  source = "./modules/uptimekuma"
   app_name = var.uptimekuma
   # optionally, pass variables expected by your module here
 }
