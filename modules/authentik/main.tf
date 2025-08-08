@@ -17,13 +17,6 @@ return ak_is_group_member(request.user, name="HomeLab")
 EOT
 }
 
-#resource "authentik_policy_expression" "allow_trusted_ip" {
-#  name       = "allow-trusted-ip"
-#  expression = <<EOT
-#return ak_client_ip in ip_network('192.168.0.110/32')
-#EOT
-#}
-
 output "all_proxies" {
   value = [
     module.uptimekuma.proxy_id,
@@ -56,7 +49,7 @@ module uptimekuma {
   app_slug = var.app_name_uptimekuma
   app_external_host = "https://${var.app_name_uptimekuma}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-#  allow_trusted_ip_policy_id    = authentik_policy_expression.allow_trusted_ip.id
+  token_validity = "minutes=10"
 }
 
 module homarr {
@@ -65,7 +58,7 @@ module homarr {
   app_slug = var.app_name_homarr
   app_external_host = "https://${var.app_name_homarr}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-#  allow_trusted_ip_policy_id    = authentik_policy_expression.allow_trusted_ip.id
+  token_validity = "minutes=10"
 }
 
 module openwebui {
@@ -74,10 +67,8 @@ module openwebui {
   app_slug = var.app_name_openwebui
   app_external_host = "https://${var.app_name_openwebui}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-#  allow_trusted_ip_policy_id    = authentik_policy_expression.allow_trusted_ip.id
+  token_validity = "hours=10"
 }
-
-
 
 module pihole {
   source = "./modules/forwardauth_bundle"
@@ -85,7 +76,7 @@ module pihole {
   app_slug = var.app_name_pihole
   app_external_host = "https://${var.app_name_pihole}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-#  allow_trusted_ip_policy_id    = authentik_policy_expression.allow_trusted_ip.id
+  token_validity = "minutes=10"
 }
 
 module pihole2 {
@@ -94,5 +85,5 @@ module pihole2 {
   app_slug = var.app_name_pihole2
   app_external_host = "https://${var.app_name_pihole2}.hozzlab.ca"
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
-#  allow_trusted_ip_policy_id    = authentik_policy_expression.allow_trusted_ip.id
+  token_validity = "minutes=10"
 }

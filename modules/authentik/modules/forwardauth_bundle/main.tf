@@ -26,6 +26,7 @@ resource "authentik_provider_proxy" "name" {
   external_host      = var.app_external_host
   authorization_flow = data.authentik_flow.default-authorization-flow.id
   invalidation_flow = data.authentik_flow.default_invalidation_flow.id
+  access_token_validity = var.token_validity
 }
 
 resource "authentik_application" "name" {
@@ -39,13 +40,6 @@ resource "authentik_application_entitlement" "homelab_ent" {
   application = authentik_application.name.uuid
   name       = "homelab-access"
 }
-
-#--- Policy Bindings (App-level access control) ---#
-#resource "authentik_policy_binding" "bypass_for_trusted_ip" {
-#  target = authentik_application.name.uuid
-#  policy = var.allow_trusted_ip_policy_id
-#  order  = 0
-#}
 
 resource "authentik_policy_binding" "restrict_app_to_ent" {
   target = authentik_application.name.uuid
@@ -71,7 +65,3 @@ output "application_id" {
 output "policy_group_id" {
   value = authentik_policy_binding.restrict_app_to_ent.id
 }
-
-#output "policy_ip_id" {
-#  value = authentik_policy_binding.bypass_for_trusted_ip.id
-#}

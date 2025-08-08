@@ -20,4 +20,8 @@ variable "app_group" {
 
 variable "require_homelab_ent_policy_id" {}
 
-# variable "allow_trusted_ip_policy_id" {}
+variable "token_validity" {
+  type = string
+  description = "token validity time"
+}
+
