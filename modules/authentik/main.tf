@@ -37,6 +37,7 @@ resource "authentik_outpost" "outpost" {
   protocol_providers = [
     module.uptimekuma.proxy_id,
     module.homarr.proxy_id,
+    module.openwebui.proxy_id,
     module.pihole.proxy_id,
     module.pihole2.proxy_id
   ]
@@ -66,6 +67,16 @@ module homarr {
   require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
 #  allow_trusted_ip_policy_id    = authentik_policy_expression.allow_trusted_ip.id
 }
+
+module openwebui {
+  source = "./modules/forwardauth_bundle"
+  app_name = var.app_name_openwebui
+  app_slug = var.app_name_openwebui
+  app_external_host = "https://${var.app_name_openwebui}.hozzlab.ca"
+  require_homelab_ent_policy_id = authentik_policy_expression.require_homelab_ent.id
+#  allow_trusted_ip_policy_id    = authentik_policy_expression.allow_trusted_ip.id
+}
+
 
 
 module pihole {

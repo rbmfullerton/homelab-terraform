@@ -17,3 +17,8 @@ variable "app_name_homarr" {
   description = "The name of the app/deployment"
   type        = string
 }
+
+variable "app_name_openwebui" {
+  description = "The name of the app/deployment"
+  type        = string
+}

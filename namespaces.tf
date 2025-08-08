@@ -9,3 +9,9 @@ resource "kubernetes_namespace" "servarr-internal" {
     name = "servarr-internal"
   }
 }
+
+resource "kubernetes_namespace" "ai" {
+  metadata {
+    name = "ai"
+  }
+}

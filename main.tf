@@ -4,6 +4,7 @@
   app_name_pihole = var.pihole
   app_name_pihole2 = var.pihole2
   app_name_homarr = var.homarr
+  app_name_openwebui = var.openwebui
   # optionally, pass variables expected by your module here
 }
 
@@ -19,6 +20,7 @@ module "pihole" {
   app_name_pihole = var.pihole
   app_name_pihole2 = var.pihole2
   app_name_homarr = var.homarr
+  app_name_openwebui = var.openwebui
   providers = {
     pihole.pihole1 = pihole.pihole1
     pihole.pihole2 = pihole.pihole2
@@ -31,4 +33,18 @@ module "homarr" {
   source = "./modules/homarr"
   app_name = var.homarr
   envs = var.homarr_envs
+}
+
+module "ai" {
+  source = "./modules/ai"
+}
+
+module "ollama" {
+  source = "./modules/ai/ollama"
+}
+
+module "openwebui" {
+  source = "./modules/ai/openwebui"
+  app_name = var.openwebui
+  envs = var.openwebui_envs
 }

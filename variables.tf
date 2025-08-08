@@ -67,3 +67,19 @@ variable "homarr_envs" {
   }))
   default = []
 }
+
+variable "openwebui" {
+  description = "App name"
+  type        = string
+  default     = "openwebui"
+}
+
+variable "openwebui_envs" {
+  description = "Environment variables for container"
+  sensitive   = true
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
