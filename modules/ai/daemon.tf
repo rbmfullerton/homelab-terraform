@@ -1,4 +1,8 @@
 ﻿resource "kubernetes_manifest" "daemonset_kube_system_nvidia_device_plugin_daemonset" {
+  field_manager {
+    name = "terraform"
+    force_conflicts = true
+  }
   manifest = {
     "apiVersion" = "apps/v1"
     "kind" = "DaemonSet"
@@ -33,7 +37,7 @@
                   "value" = "false"
                 },
               ]
-              "image" = "nvcr.io/nvidia/k8s-device-plugin:v0.17.1"
+              "image" = "nvcr.io/nvidia/k8s-device-plugin:v0.17.3"
               "imagePullPolicy" = "IfNotPresent"
               "name" = "nvidia-device-plugin-ctr"
               "securityContext" = {

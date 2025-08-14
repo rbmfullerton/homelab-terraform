@@ -43,6 +43,10 @@ module "ollama" {
   source = "./modules/ai/ollama"
 }
 
+module "automatic1111" {
+  source = "./modules/ai/automatic1111"
+}
+
 module "openwebui" {
   source = "./modules/ai/openwebui"
   app_name = var.openwebui
