@@ -21,7 +21,7 @@
           match_expressions {
             key = "kubernetes.io/hostname"
             operator = "In"
-            values = ["k3s-worker-01"]
+            values = ["k3s-worker-02"]
           }
         }
       }
@@ -52,7 +52,7 @@ resource "kubernetes_deployment" "stable_diffusion_webui" {
     namespace = "ai"
   }
   spec {
-    replicas = 0
+    replicas = 1
     selector {
       match_labels = {
         app = "stable-diffusion-webui"
